@@ -1,4 +1,5 @@
-Flood Warning Backend Service  
+# Flood Warning Backend Service 
+
 📝 Description
  This project serves as a robust backend API for fetching and parsing flood warning data from the Bureau of Meteorology (BOM) FTP server. It provides structured JSON responses for various flood-related information and offers a centralized, type-safe logging solution.
 
@@ -25,21 +26,22 @@ npm: (Comes with Node.js) or Yarn
 
 Installation
 Clone the repository:
-
+```
 git clone https://github.com/hkaab/refactored-code-exam-backend.git
 cd refactored-code-exam-backend
-
+```
 Install dependencies:
-
+```
 npm install
 # or if you use yarn
 yarn install
-
+```
 Configuration
 This project uses environment variables for configuration. Create a .env file in the root directory of the project, based on the .env.example file.
 
 .env example:
 
+```
 # Application Configuration
 PORT=3000
 NODE_ENV=development # or 'production', 'test'
@@ -56,20 +58,22 @@ LOG_MAX_FILES=14d # e.g., '14d', '30'
 FTP_HOST=ftp.bom.gov.au
 FTP_SECURE=false
 FTP_DIRECTORY=/anon/gen/fwo/
-
+```
 Running the Application
 Development Mode
 For development, you can use nodemon and ts-node for live reloading:
-
+```
 npm run dev
 # or
 yarn dev
+```
 
 This will start the server, watch for file changes, and automatically restart.
 
 Production Mode
 First, build the TypeScript project, then run the compiled JavaScript:
 
+```
 npm run build
 # or
 yarn build
@@ -77,6 +81,7 @@ yarn build
 npm start
 # or
 yarn start
+```
 
 The application will be served at http://localhost:3000 (or your configured PORT).
 
@@ -100,8 +105,7 @@ npm run format / yarn format: Runs Prettier to format code (if applicable).
 npm run clean / yarn clean: Removes compiled dist files and logs directory.
 
 📂 Project Structure
-A typical TypeScript Node.js project structure:
-
+```
 .
 ├── dist/                     # Compiled JavaScript output (ignored by Git)
 ├── logs/                     # Application log files (ignored by Git)
@@ -133,10 +137,9 @@ server.ts                     # Server Initialization
 ├── package.json              # Project metadata and scripts
 ├── tsconfig.json             # TypeScript compiler configuration
 └── README.md                 # This file
-
+```
 🛠 Technologies Used
 Node.js: Asynchronous event-driven JavaScript runtime.
-
 TypeScript: Superset of JavaScript that compiles to plain JavaScript. Adds static type definitions.
 
 Express.js: Fast, unopinionated, minimalist web framework for Node.js.
@@ -172,11 +175,11 @@ Open a Pull Request
 
 🧪 Testing
 To run the unit and integration tests:
-
+```
 npm test
 # or
 yarn test
-
+```
 (You'll need to set up Jest or another testing framework in jest.config.js and write your test files in a __tests__ or tests directory).
 
 📄 License
