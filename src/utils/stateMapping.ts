@@ -2,7 +2,7 @@
  * Defines the allowed Australian State/Territory abbreviations.
  * This is a 'string literal union type', which provides strong type checking.
  */
-export type AustralianState = "NT" | "NSW" | "Qld" | "SA" | "Tas" | "Vic" | "WA" | "ACT";
+export type AustralianState = "NT" | "NSW" | "QLD" | "SA" | "TAS" | "VIC" | "WA" | "ACT";
 
 /**
  * Defines the AMOC ID prefixes for Australian states/territories.
@@ -18,10 +18,10 @@ export type AmocIdPrefix = "IDD" | "IDN" | "IDQ" | "IDS" | "IDT" | "IDV" | "IDW"
 const stateAmocIdMap: Record<AustralianState, AmocIdPrefix> = {
   "NT": "IDD",
   "NSW": "IDN",
-  "Qld": "IDQ",
+  "QLD": "IDQ",
   "SA": "IDS",
-  "Tas": "IDT",
-  "Vic": "IDV",
+  "TAS": "IDT",
+  "VIC": "IDV",
   "WA": "IDW",
   "ACT": "IDN", // ACT uses the same ID as NSW
 };
@@ -40,7 +40,7 @@ export function getAmocToStateId(state: string): AmocIdPrefix {
   // The 'as any' is a temporary escape hatch for complex types,
   // ideally, 'state' would already be strongly typed if coming from a validated source.
   // A safer approach is to check if the key exists before accessing.
-  if (Object.prototype.hasOwnProperty.call(stateAmocIdMap, state)) {
+  if (Object.prototype.hasOwnProperty.call(stateAmocIdMap, state.toUpperCase())) {
     return stateAmocIdMap[state as AustralianState];
   }
 

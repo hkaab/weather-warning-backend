@@ -15,6 +15,7 @@ export const getWarnings = async (req: Request, res: Response, next: NextFunctio
 
         if (!req.query.state) {
            res.status(400).send({ error: 'State query parameter is required' });
+           return;
         }
 
         // Initialize the BOM service to handle requests related to flood warnings
@@ -23,10 +24,7 @@ export const getWarnings = async (req: Request, res: Response, next: NextFunctio
         // Get the AMOC ID for the state from the query parameter
         // This ID is used to fetch the relevant flood warnings
         const stateAmocId = getAmocToStateId(req.query.state?.toString() || "");
-        
-        if (!stateAmocId) {
-           res.status(400).send({ error: 'Invalid state provided' });
-        }
+       
 
         // Fetch the flood warnings for the specified state using the BOM service
         // This will return an array of warnings, each containing details like title, description, and severity
@@ -34,10 +32,12 @@ export const getWarnings = async (req: Request, res: Response, next: NextFunctio
 
         if (!warnings || warnings.length === 0) {
            res.status(404).send({ error: 'No warnings found for the specified state' });
+           return;
         } 
         res.send(warnings);
     } catch (error) {
     // Handle any errors that occur during the fetching of warnings
+    weatherControllerLogger.error('Error fetching warnings:', error);
     next(error);
   }
 };
@@ -51,18 +51,21 @@ export const getWarningById = async (req: Request, res: Response, next: NextFunc
     const warningId = req.params.id;
     if (!warningId) {
        res.status(400).send({ error: 'Warning ID is required' });
+       return;
     }
 
     // Validate the warning ID format (optional, depending on your requirements)
     if (!/^[a-zA-Z0-9-]+$/.test(warningId)) {
        res.status(400).send({ error: 'Invalid warning ID format' });
+       return;
     }
     
     // Download the XML content of the flood warning using the BOM service
     // If the warning is not found, return a 404 error
     const warning = await bomService.downloadXml(warningId);
     if (!warning) {
-       res.status(404).send({ error: 'Warning not found' });
+      res.status(404).send({ error: 'Warning not found' });
+      return;
     }
 
     // Parse the downloaded XML content to extract structured warning information
@@ -74,6 +77,7 @@ export const getWarningById = async (req: Request, res: Response, next: NextFunc
     const warningText = await bomService.downloadText(warningId)
     if (!warningText) {
       res.status(404).send({ error: 'Warning text not found' });
+      return;
     }
     
     // Log the warning text for debugging purposes
