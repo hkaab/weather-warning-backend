@@ -107,27 +107,27 @@ npm start
 yarn start
 ```
 
-The application will be served at http://localhost:3000 (or your configured PORT).
+The application will be served at `http://localhost:3000` (or your configured `PORT`).
 
 ⚙️ **Available Scripts**
 
 In the project directory, you can run:
 
-npm install / yarn install: Installs all necessary dependencies.
+`npm install` / `yarn install`: Installs all necessary dependencies.
 
-npm run build / yarn build: Compiles TypeScript files from src/ to JavaScript in dist/.
+`npm run build` / `yarn build`: Compiles TypeScript files from `src/` to JavaScript in `dist/`.
 
-npm start / yarn start: Starts the compiled application in production mode.
+`npm start` / `yarn start`: Starts the compiled application in production mode.
 
-npm run dev / yarn dev: Starts the application in development mode with live reloading.
+`npm run dev` / `yarn dev`: Starts the application in development mode with live reloading.
 
-npm test / yarn test: Runs the test suite (if applicable).
+`npm test` / `yarn test`: Runs the test suite (if applicable).
 
-npm run lint / yarn lint: Runs ESLint to check for code quality issues (if applicable).
+`npm run lint` / `yarn lint`: Runs ESLint to check for code quality issues (if applicable).
 
-npm run format / yarn format: Runs Prettier to format code (if applicable).
+`npm run format` / `yarn format`: Runs Prettier to format code (if applicable).
 
-npm run clean / yarn clean: Removes compiled dist files and logs directory.
+`npm run clean` / `yarn clean`: Removes compiled `dist` files and `logs` directory.
 
 📂 **Project Structure**
 
@@ -176,7 +176,7 @@ Winston: A versatile logging library for Node.js.
 
 Winston Daily Rotate File: A transport for Winston that automatically rotates log files daily.
 
-dotenv: Loads environment variables from a .env file.
+dotenv: Loads environment variables from a `.env` file.
 
 basic-ftp: An FTP client for Node.js.
 
@@ -194,11 +194,11 @@ Contributions are what make the open-source community such an amazing place to l
 
 Fork the Project
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 
-Commit your Changes (git commit -m 'Add some AmazingFeature')
+Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 
-Push to the Branch (git push origin feature/AmazingFeature)
+Push to the Branch (`git push origin feature/AmazingFeature`)
 
 Open a Pull Request
 
@@ -211,12 +211,12 @@ npm test
 # or
 yarn test
 ```
-(You'll need to set up Jest or another testing framework in jest.config.js and write your test files in a __tests__ or tests directory).
+(You'll need to set up Jest or another testing framework in `jest.config.js` and write your test files in a `__tests__` or `tests` directory).
 
 
 📄 **License**
 
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ✉️ **Contact**
 
