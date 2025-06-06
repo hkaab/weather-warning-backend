@@ -12,5 +12,10 @@ const router = Router();
 router.get('/', getWarnings);
 router.get('/warning/:id', getWarningById);
 
+// Health check route
+router.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // Export the router
 export default router;
