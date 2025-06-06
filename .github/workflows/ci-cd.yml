@@ -26,7 +26,7 @@ jobs:
       run: npm test # Assuming you have a test script in package.json
 
     - name: Build
-      run: npm build  # Assuming you have a test script in package.json
+      run: npm run build  # Assuming you have a test script in package.json
 
     - name: Generate deployment package
       run: |
