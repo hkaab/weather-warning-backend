@@ -1,23 +1,37 @@
 # Flood Warning Backend Service 
 
 📝 Description
+
  This project serves as a robust backend API for fetching and parsing flood warning data from the Bureau of Meteorology (BOM) FTP server. It provides structured JSON responses for various flood-related information and offers a centralized, type-safe logging solution.
 
 ✨ Features
-FTP Data Retrieval: Securely connects to specified FTP servers (e.g., BOM) to download XML and text files.
 
-XML Parsing: Parses complex AMOC XML structures into easy-to-use TypeScript objects.
+FTP Data Retrieval: 
 
-Structured Logging: Implements a comprehensive Winston-based logging system with multiple transports (console, file), log levels, and structured metadata.
+Securely connects to specified FTP servers (e.g., BOM) to download XML and text files.
 
-RESTful API Endpoints: Exposes data via well-defined RESTful API endpoints using Express.js.
+XML Parsing: 
 
-TypeScript Best Practices: Developed with strong type safety, modularity, and maintainability in mind.
+Parses complex AMOC XML structures into easy-to-use TypeScript objects.
+
+Structured Logging: 
+
+Implements a comprehensive Winston-based logging system with multiple transports (console, file), log levels, and structured metadata.
+
+RESTful API Endpoints: 
+
+Exposes data via well-defined RESTful API endpoints using Express.js.
+
+TypeScript Best Practices: 
+
+Developed with strong type safety, modularity, and maintainability in mind.
 
 🚀 Getting Started
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 Prerequisites
+
 Before you begin, ensure you have the following installed:
 
 Node.js: v18.x or higher
@@ -25,18 +39,22 @@ Node.js: v18.x or higher
 npm: (Comes with Node.js) or Yarn
 
 Installation
+
 Clone the repository:
+
 ```
 git clone https://github.com/hkaab/refactored-code-exam-backend.git
 cd refactored-code-exam-backend
 ```
 Install dependencies:
+
 ```
 npm install
 # or if you use yarn
 yarn install
 ```
 Configuration
+
 This project uses environment variables for configuration. Create a .env file in the root directory of the project, based on the .env.example file.
 
 .env example:
@@ -63,7 +81,9 @@ TEMP_DOWNLOADS_DIR = ./downloads
 Running the Application
 
 Development Mode
+
 For development, you can use nodemon and ts-node for live reloading:
+
 ```
 npm run dev
 # or
@@ -73,7 +93,9 @@ yarn dev
 This will start the server, watch for file changes, and automatically restart.
 
 Production Mode
-First, build the TypeScript project, then run the compiled JavaScript:
+
+First, build the TypeScript project, then run the compiled 
+JavaScript:
 
 ```
 npm run build
