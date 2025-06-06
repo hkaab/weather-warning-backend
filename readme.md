@@ -1,10 +1,10 @@
 # Flood Warning Backend Service 
 
-📝 Description
+📝 **Description**
 
  This project serves as a robust backend API for fetching and parsing flood warning data from the Bureau of Meteorology (BOM) FTP server. It provides structured JSON responses for various flood-related information and offers a centralized, type-safe logging solution.
 
-✨ Features
+✨ **Features**
 
 FTP Data Retrieval: 
 
@@ -26,7 +26,7 @@ TypeScript Best Practices:
 
 Developed with strong type safety, modularity, and maintainability in mind.
 
-🚀 Getting Started
+🚀 **Getting Started**
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -55,7 +55,7 @@ yarn install
 ```
 Configuration
 
-This project uses environment variables for configuration. Create a .env file in the root directory of the project, based on the .env.example file.
+This project uses environment variables for configuration. Create a `.env` file in the root directory of the project, based on the `.env.example` file.
 
 .env example:
 
@@ -109,7 +109,7 @@ yarn start
 
 The application will be served at http://localhost:3000 (or your configured PORT).
 
-⚙️ Available Scripts
+⚙️ **Available Scripts**
 
 In the project directory, you can run:
 
@@ -129,7 +129,7 @@ npm run format / yarn format: Runs Prettier to format code (if applicable).
 
 npm run clean / yarn clean: Removes compiled dist files and logs directory.
 
-📂 Project Structure
+📂 **Project Structure**
 
 ```
 .
@@ -164,7 +164,7 @@ server.ts                     # Server Initialization
 ├── tsconfig.json             # TypeScript compiler configuration
 └── README.md                 # This file
 ```
-🛠 Technologies Used
+🛠 **Technologies Used**
 Node.js: Asynchronous event-driven JavaScript runtime.
 TypeScript: Superset of JavaScript that compiles to plain JavaScript. Adds static type definitions.
 
@@ -186,7 +186,7 @@ ts-node: (Optional) TypeScript execution environment for Node.js.
 
 nodemon: (Optional) Utility that monitors for changes in your source and automatically restarts your server.
 
-🤝 Contributing
+🤝 **Contributing**
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
@@ -200,7 +200,7 @@ Push to the Branch (git push origin feature/AmazingFeature)
 
 Open a Pull Request
 
-🧪 Testing
+🧪 **Testing**
 
 To run the unit and integration tests:
 
@@ -211,12 +211,17 @@ yarn test
 ```
 (You'll need to set up Jest or another testing framework in jest.config.js and write your test files in a __tests__ or tests directory).
 
-📄 License
+## References
+
+[BOM ftp url](http://www.bom.gov.au/catalogue/anon-ftp.shtml) 
+
+📄 **License**
 
 Distributed under the MIT License. See LICENSE for more information.
 
-✉️ Contact
+✉️ **Contact**
 
 Hossein Kaabi - hkaabi@myyahoo.com
 
 Project Link: https://github.com/hkaab/refactored-code-exam-backend
+
