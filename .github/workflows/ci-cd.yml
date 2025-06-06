@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Allows manual triggering from the GitHub Actions tab
 
 jobs:
-  build-and-deploy:
+  build-test-and-deploy:
     runs-on: ubuntu-latest # Use a fresh Ubuntu runner
 
     steps:
@@ -17,13 +17,16 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20' # Or your desired Node.js version
+        node-version: '24' # Or your desired Node.js version
 
     - name: Install dependencies
       run: npm install # Install your project's npm dependencies
 
     - name: Run tests 
       run: npm test # Assuming you have a test script in package.json
+
+    - name: Build
+      run: npm build  # Assuming you have a test script in package.json
 
     - name: Generate deployment package
       run: |
