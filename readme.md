@@ -55,11 +55,13 @@ LOG_MAX_SIZE=20m # e.g., '20m', '100k'
 LOG_MAX_FILES=14d # e.g., '14d', '30'
 
 # FTP Configuration (if applicable)
-FTP_HOST=ftp.bom.gov.au
-FTP_SECURE=false
-FTP_DIRECTORY=/anon/gen/fwo/
+BOM_FTP_HOST=ftp.bom.gov.au
+BOM_FTP_DIR=/anon/gen/fwo/
+TEMP_DOWNLOADS_DIR = ./downloads
 ```
+
 Running the Application
+
 Development Mode
 For development, you can use nodemon and ts-node for live reloading:
 ```
@@ -86,6 +88,7 @@ yarn start
 The application will be served at http://localhost:3000 (or your configured PORT).
 
 ⚙️ Available Scripts
+
 In the project directory, you can run:
 
 npm install / yarn install: Installs all necessary dependencies.
@@ -105,6 +108,7 @@ npm run format / yarn format: Runs Prettier to format code (if applicable).
 npm run clean / yarn clean: Removes compiled dist files and logs directory.
 
 📂 Project Structure
+
 ```
 .
 ├── dist/                     # Compiled JavaScript output (ignored by Git)
@@ -161,6 +165,7 @@ ts-node: (Optional) TypeScript execution environment for Node.js.
 nodemon: (Optional) Utility that monitors for changes in your source and automatically restarts your server.
 
 🤝 Contributing
+
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 Fork the Project
@@ -174,7 +179,9 @@ Push to the Branch (git push origin feature/AmazingFeature)
 Open a Pull Request
 
 🧪 Testing
+
 To run the unit and integration tests:
+
 ```
 npm test
 # or
@@ -183,6 +190,7 @@ yarn test
 (You'll need to set up Jest or another testing framework in jest.config.js and write your test files in a __tests__ or tests directory).
 
 📄 License
+
 Distributed under the MIT License. See LICENSE for more information.
 
 ✉️ Contact

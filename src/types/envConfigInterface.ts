@@ -2,7 +2,7 @@
 export interface EnvConfigInterface {
   port: number;
   nodeEnv: string;
-  bomFtpUrl: string;
+  bomFtpHost: string;
   bomFtpDir: string;
   tempDownloadsDir: string;
   log: {

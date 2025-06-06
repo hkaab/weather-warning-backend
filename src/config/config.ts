@@ -7,7 +7,7 @@ dotenv.config();
 const config: EnvConfigInterface = {
   port: Number(process.env.PORT) || 3000,
   nodeEnv: process.env.NODE_ENV || 'development',
-  bomFtpUrl: process.env.BOM_FTP_URL || 'ftp.bom.gov.au',
+  bomFtpHost: process.env.BOM_FTP_HOST || 'ftp.bom.gov.au',
   bomFtpDir: process.env.BOM_FTP_DIR || '/anon/gen/fwo/',
   tempDownloadsDir: process.env.TEMP_DOWNLOADS_DIR || './downloads',
   log: {

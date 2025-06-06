@@ -24,7 +24,7 @@ export class BomService {
    * @param localDownloadDir The local directory where files will be downloaded (default is from config).
    */
   constructor(
-    host: string = config.bomFtpUrl,
+    host: string = config.bomFtpHost,
     secure: boolean = false,
     directory: string = config.bomFtpDir,
     localDownloadDir: string = config.tempDownloadsDir // A dedicated directory for downloads
