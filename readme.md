@@ -186,5 +186,7 @@ yarn test
 Distributed under the MIT License. See LICENSE for more information.
 
 ✉️ Contact
-Your Name - hkaabi@myyahoo.com
+
+Hossein Kaabi - hkaabi@myyahoo.com
+
 Project Link: https://github.com/hkaab/refactored-code-exam-backend
