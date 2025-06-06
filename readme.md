@@ -143,7 +143,7 @@ CMD ["npm", "start"]
 
  `docker build -t flood-warning-api:latest .`
 
-3.**Running the Docker Container**
+3. **Running the Docker Container**
 
  `docker run -p 3000:3000 --name flood-warning-api -d flood-warning-api:latest`
 
@@ -151,9 +151,9 @@ CMD ["npm", "start"]
   
   `docker ps`
 
-4. **Access your application:**
+5. **Access your application:**
 
- The application will now be accessible via http://localhost:3000 on your host machine.
+    The application will now be accessible via http://localhost:3000 on your host machine.
 
 **Stopping and Removing the Container**
 
