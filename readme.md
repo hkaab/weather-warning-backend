@@ -164,7 +164,9 @@ server.ts                     # Server Initialization
 ├── tsconfig.json             # TypeScript compiler configuration
 └── README.md                 # This file
 ```
+
 🛠 **Technologies Used**
+
 Node.js: Asynchronous event-driven JavaScript runtime.
 TypeScript: Superset of JavaScript that compiles to plain JavaScript. Adds static type definitions.
 
@@ -211,9 +213,6 @@ yarn test
 ```
 (You'll need to set up Jest or another testing framework in jest.config.js and write your test files in a __tests__ or tests directory).
 
-## References
-
-[BOM ftp url](http://www.bom.gov.au/catalogue/anon-ftp.shtml) 
 
 📄 **License**
 
@@ -225,3 +224,6 @@ Hossein Kaabi - hkaabi@myyahoo.com
 
 Project Link: https://github.com/hkaab/refactored-code-exam-backend
 
+## References
+
+[BOM ftp url](http://www.bom.gov.au/catalogue/anon-ftp.shtml) 
