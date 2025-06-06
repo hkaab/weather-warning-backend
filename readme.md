@@ -81,7 +81,7 @@ TEMP_DOWNLOADS_DIR = ./downloads
 
 Running the Application
 
-Development Mode
+**Development Mode**
 
 For development, you can use nodemon and ts-node for live reloading:
 
@@ -93,7 +93,7 @@ yarn dev
 
 This will start the server, watch for file changes, and automatically restart.
 
-Production Mode
+**Production Mode**
 
 First, build the TypeScript project, then run the compiled 
 JavaScript:
@@ -107,8 +107,68 @@ npm start
 # or
 yarn start
 ```
-
 The application will be served at `http://localhost:3000` (or your configured `PORT`).
+
+🐳 **Containerization (Docker)**
+
+1.Create a Dockerfile in the root of your project:
+
+```
+# Use an official lightweight Node.js image.
+FROM node:18-alpine
+
+# Set the working directory in the container.
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install dependencies.
+RUN npm install
+
+# Copy the rest of the source code.
+COPY . .
+
+# Build the project (assuming tsc is configured to output to the 'dist' folder)
+RUN npm run build
+
+# Expose the port (make sure this matches your config; here we assume 3000)
+EXPOSE 3000
+
+# Start the application.
+CMD ["npm", "start"]
+```
+
+2. **Build the Docker image:**
+
+ `docker build -t flood-warning-api:latest .`
+
+3.**Running the Docker Container**
+
+ `docker run -p 3000:3000 flood-warning-api`
+
+4. **Verify the container is running:**
+  
+  `docker ps`
+
+4. **Access your application:**
+
+ The application will now be accessible via http://localhost:3000 on your host machine.
+
+**Stopping and Removing the Container**
+
+ * Stop the container:
+
+   `docker stop flood-warning-api`
+ 
+ * Remove the container (after stopping):
+   
+   `docker rm flood-warning-api`
+
+ * Remove the Docker image:
+   
+   `docker rmi flood-warning-api:latest`
+
 
 ⚙️ **Available Scripts**
 
