@@ -145,7 +145,7 @@ CMD ["npm", "start"]
 
 3.**Running the Docker Container**
 
- `docker run -p 3000:3000 flood-warning-api`
+ `docker run -p 3000:3000 --name flood-warning-api -d flood-warning-api:latest`
 
 4. **Verify the container is running:**
   
