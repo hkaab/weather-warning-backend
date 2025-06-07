@@ -4,7 +4,7 @@ import { EnvConfigInterface } from '../types/envConfigInterface';
 dotenv.config();
 
 const config: EnvConfigInterface = {
-  port: Number(process.env.PORT) || 3000,
+  port: Number(process.env.PORT) || 8080,
   nodeEnv: process.env.NODE_ENV || 'development',
   bomFtpHost: process.env.BOM_FTP_HOST || 'ftp.bom.gov.au',
   bomFtpDir: process.env.BOM_FTP_DIR || '/anon/gen/fwo/',
