@@ -1,0 +1,66 @@
+import fetch from 'node-fetch';
+
+const BASE_URL = 'http://localhost:8080';
+
+describe('Flood Warning API Integration Tests', () => {
+
+    describe('/health endpoint', () => {
+        it('should return a 200 OK status for /health', async () => {
+            const response = await fetch(`${BASE_URL}/health`);
+            expect(response.status).toBe(200);
+            const data = await response.json();
+            expect(data).toHaveProperty('status','OK');
+        });
+    });
+
+   describe('/ endpoint', () => {
+        it('should return a 200 OK for valid state', async () => {
+            const response = await fetch(`${BASE_URL}?state=NSW`);
+            expect(response.status).toBe(200);
+        });
+        it('should return a 400 Bad Request if state parameter is missing', async () => {
+            const response = await fetch(`${BASE_URL}`);
+            expect(response.status).toBe(400);
+            const data = await response.json();
+            expect(data).toHaveProperty('error','State query parameter is required');
+        });
+
+        it('should return a 404 when state is invalid', async () => {
+            const response = await fetch(`${BASE_URL}?state=INVALID`);
+            expect(response.status).toBe(404);
+            const data = await response.json();
+            expect(data).toHaveProperty('error','No warnings found for the specified state');
+        });
+    });
+
+    describe('/warnings/:id endpoint', () => {
+        const existingWarningId = 'IDQ10090'; // Example existing warning ID
+        const nonExistentWarningId = 'NONEXISTENT123'; // Example non-existent warning ID
+
+        it(`should return a 200 OK status and warning data for existing warning ID ${existingWarningId}`, async () => {
+            const response = await fetch(`${BASE_URL}/warning/${existingWarningId}`);
+            expect(response.status).toBe(200);
+            const data = await response.json();
+            expect(data).toHaveProperty('expiryTime');
+            expect(data).toHaveProperty('issueTimeUtc');
+            expect(data).toHaveProperty('productType');
+            expect(data).toHaveProperty('service');
+            expect(data).toHaveProperty('text');
+        });
+
+        it(`should return a 404 Not Found status for non-existent warning ID ${nonExistentWarningId}`, async () => {
+            const response = await fetch(`${BASE_URL}/warning/${nonExistentWarningId}`);
+            expect(response.status).toBe(404);
+            const data = await response.json();
+            expect(data).toHaveProperty('error','Warning not found');
+        });
+
+        it('should return a 400 Bad Request if warning ID format is invalid', async () => {
+            const invalidWarningId = 'INVALID_ID!'; // Example of an invalid ID format
+            const response = await fetch(`${BASE_URL}/warning/${invalidWarningId}`);
+            expect(response.status).toBe(400);
+            const data = await response.json();
+            expect(data).toHaveProperty('error','Invalid warning ID format');
+        });
+    });
+});

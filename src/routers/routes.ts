@@ -13,8 +13,8 @@ router.get('/', getWarnings);
 router.get('/warning/:id', getWarningById);
 
 // Health check route
-router.get('/health', (req, res) => {
-  res.status(200).send('OK');
+router.get('/health', (_, res) => {
+  res.status(200).send({ status: 'OK' });
 });
 
 // Export the router

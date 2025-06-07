@@ -1,10 +1,7 @@
-import { getLogger, AppLogger } from '../src/utils/logger'; // Adjust path as necessary
-import  config   from '../src/config/config'; // Adjust config path
-import { format, transports, addColors, Logger as WinstonBaseLogger } from 'winston';
+import { getLogger, AppLogger } from '../../src/utils/logger'; // Adjust path as necessary
 // Import createLogger as a jest.Mock type for proper typing of .mock property
 import type { LoggerOptions, Logger as WinstonLoggerType } from 'winston';
 const createLogger: jest.Mock<WinstonLoggerType, [LoggerOptions?]> = require('winston').createLogger;
-import DailyRotateFile from 'winston-daily-rotate-file';
 
 // --- Mock Winston and its dependencies ---
 // We need to mock Winston to test our singleton logger in isolation.
@@ -125,7 +122,7 @@ jest.mock('winston-daily-rotate-file', () => {
 
 
 // Mock the config module
-jest.mock('../src/config/config', () => ({
+jest.mock('../../src/config/config', () => ({
   log: {
     level: 'debug',
     file: {
@@ -175,7 +172,7 @@ describe('Singleton Winston Logger', () => {
 
   it('should return the same logger instance (singleton pattern)', () => {
     // Directly access the internal LoggerManager to test getInstance
-    const LoggerManagerModule = require('../src/utils/logger'); // Re-import to ensure fresh module state for this specific test
+    const LoggerManagerModule = require('../../src/utils/logger'); // Re-import to ensure fresh module state for this specific test
     const instance1 = LoggerManagerModule.getLogger();
     const instance2 = LoggerManagerModule.getLogger();
 

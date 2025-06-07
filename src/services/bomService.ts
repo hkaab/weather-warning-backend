@@ -56,6 +56,8 @@ export class BomService {
       this.bomServiceLogger.info(`Connecting to FTP server at ${this.ftpConfig.host}...`);
       this.bomServiceLogger.info(`Navigating to directory: ${this.ftpConfig.directory}`);
       client.ftp.verbose = true;
+    } else {
+      client.ftp.verbose = false; // Disable verbose logging in production
     }
 
     try {

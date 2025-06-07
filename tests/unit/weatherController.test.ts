@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
-import { getWarnings, getWarningById } from '../src/controllers/weatherController'; 
-import { BomService } from '../src/services/bomService'; 
-import { getAmocToStateId } from '../src/utils/stateMapping'; 
-import { FloodWarningParser } from '../src/parsers/floodWarningParser'; 
+import { getWarnings, getWarningById } from '../../src/controllers/weatherController'; 
+import { BomService } from '../../src/services/bomService'; 
+import { getAmocToStateId } from '../../src/utils/stateMapping'; 
+import { FloodWarningParser } from '../../src/parsers/floodWarningParser'; 
 
 // --- Mock External Dependencies ---
 
 // Mock BomService
-jest.mock('../src/services/bomService');
+jest.mock('../../src/services/bomService');
 // Create a mock instance of BomService that will be returned by the constructor
 const mockBomServiceInstance = {
   getWarnings: jest.fn(),
@@ -21,11 +21,11 @@ mockBomService.mockImplementation(() => mockBomServiceInstance as any);
 
 
 // Mock getAmocToStateId utility function
-jest.mock('../src/utils/stateMapping');
+jest.mock('../../src/utils/stateMapping');
 const mockGetAmocToStateId = getAmocToStateId as jest.MockedFunction<typeof getAmocToStateId>;
 
 // Mock FloodWarningParser
-jest.mock('../src/parsers/floodWarningParser');
+jest.mock('../../src/parsers/floodWarningParser');
 // Create a mock instance of FloodWarningParser that will be returned by its constructor
 const mockFloodWarningParserInstance = {
   getWarningInfo: jest.fn(),
