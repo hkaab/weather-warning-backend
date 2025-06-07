@@ -33,7 +33,7 @@ jobs:
         # Create a zip file containing your application code
         # Beanstalk expects a specific structure.
         # Ensure all necessary files (like package.json, Procfile, etc.) are included.
-        zip -r deploy.zip . -x "*.git*" "node_modules/*" # Exclude .git and node_modules as Beanstalk will install them
+        zip -r deploy.zip . -x "*.git*" # Exclude .git and node_modules as Beanstalk will install them
 
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v22 # A popular community action for Beanstalk deployment
