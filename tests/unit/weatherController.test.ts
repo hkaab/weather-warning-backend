@@ -25,7 +25,7 @@ jest.mock('../../src/utils/stateMapping');
 const mockGetAmocToStateId = getAmocToStateId as jest.MockedFunction<typeof getAmocToStateId>;
 
 // Mock FloodWarningParser
-jest.mock('../../src/parsers/floodWarningParser');
+jest.mock('../../src/utils/floodWarningParser');
 // Create a mock instance of FloodWarningParser that will be returned by its constructor
 const mockFloodWarningParserInstance = {
   getWarningInfo: jest.fn(),
