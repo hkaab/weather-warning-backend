@@ -287,7 +287,8 @@ web: npm start
    The workflow file is located at `.github/workflows/deploy.yml.`
 
 ```
-   name: Flood Warning API to AWS Elastic Beanstalk
+
+name: Flood Warning API to AWS Elastic Beanstalk
 
 on:
   push:
