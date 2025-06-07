@@ -284,9 +284,9 @@ web: npm start
 ```
  * `cicd.yml` **Workflow File** 📝:
    
-   The workflow file is located at .github/workflows/deploy.yml.
+   The workflow file is located at `.github/workflows/deploy.yml.`
 
-   ```
+```
    name: Flood Warning API to AWS Elastic Beanstalk
 
 on:
@@ -335,8 +335,9 @@ jobs:
         region: ${{ secrets.AWS_REGION }}
         deployment_package: deploy.zip 
         wait_for_deployment: true
-   ```
+```
    After setting up your AWS environment, adding the secrets, and pushing the `cicd.yml` file to your `main` branch, every subsequent push to `main` will trigger a deployment to your Elastic Beanstalk environment. You can monitor the progress in the "Actions" tab of your GitHub repository.
+
 
 --------------------
 
