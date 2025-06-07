@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "node dist/src/server.js",
     "dev": "ts-node src/server.ts",
-    "lint": "eslint 'src/**/*.ts'"
+    "lint": "eslint \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",
@@ -36,7 +36,10 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
     "basic-ftp": "^5.0.5",
+    "eslint-config-prettier": "^10.1.5",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0",
     "xml2js": "^0.6.2"

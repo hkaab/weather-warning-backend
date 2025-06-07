@@ -1,9 +1,9 @@
-import { parseXmlAsync } from '../utils/xmlParser';
+import { parseXmlAsync } from './xmlParser';
 import { AmocProductTypeChar, AmocServiceTypeChar } from '../types/amocTypes';
 import { AmocXmlInterface } from '../types/amocXmlInterface';
 import { FloodWarningInfoInterface } from '../types/floodWarningInfoInterface';
 import { BomService } from '../services/bomService';
-import { getLogger } from "../utils/logger";
+import { getLogger } from "./logger";
 
 /**
  * Maps single-character product codes to their full descriptions.

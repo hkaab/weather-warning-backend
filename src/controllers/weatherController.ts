@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { BomService } from '../services/bomService';
 import { getAmocToStateId } from '../utils/stateMapping';
-import { FloodWarningParser } from '../parsers/floodWarningParser';
+import { FloodWarningParser } from '../utils/floodWarningParser';
 import { getLogger } from "../utils/logger";
 
 const weatherControllerLogger = getLogger('WeatherController');

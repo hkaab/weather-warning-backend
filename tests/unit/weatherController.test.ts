@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getWarnings, getWarningById } from '../../src/controllers/weatherController'; 
 import { BomService } from '../../src/services/bomService'; 
 import { getAmocToStateId } from '../../src/utils/stateMapping'; 
-import { FloodWarningParser } from '../../src/parsers/floodWarningParser'; 
+import { FloodWarningParser } from '../../src/utils/floodWarningParser'; 
 
 // --- Mock External Dependencies ---
 

@@ -83,6 +83,8 @@ BOM_FTP_DIR=/anon/gen/fwo/
 TEMP_DOWNLOADS_DIR = ./downloads
 ```
 
+--------------------
+
 Running the Application
 
 **Development Mode**
@@ -189,7 +191,9 @@ In the project directory, you can run:
 
 `npm run dev` / `yarn dev`: Starts the application in development mode with live reloading.
 
-`npm test` / `yarn test`: Runs the test suite (if applicable).
+`npm run test:unit` / `yarn test:unit`: Runs the unit test suite (if applicable).
+
+`npm run test:integration` / `yarn test:integration`: Runs the unit test suite (if applicable).
 
 `npm run lint` / `yarn lint`: Runs ESLint to check for code quality issues (if applicable).
 
@@ -274,6 +278,7 @@ Before the GitHub Action can deploy, you need to set up your AWS environment:
         * AWS_REGION: The AWS region where your Elastic Beanstalk environment is (e.g., us-east-1, ap-southeast-2).
         * EB_APPLICATION_NAME: The name of your Elastic Beanstalk application (e.g., my-nodejs-api).
         * EB_ENVIRONMENT_NAME: The name of your Elastic Beanstalk environment (e.g., my-nodejs-api-dev).
+
  * Procfile 📄:
 
    Ensure you have a Procfile in the root of your project, which tells Elastic Beanstalk how to start your Node.js application.
@@ -347,12 +352,12 @@ jobs:
 ```
 .
 ├── dist/                     # Compiled JavaScript output (ignored by Git)
-├── logs/                     # Application log files (ignored by Git)
+├── downloads/                # Temp Download folder (ignored by Git)
 ├── node_modules/             # Node.js dependencies (ignored by Git)
 ├── src/
-│   ├── config/               # Application-wide configuration (e.g., config.ts)
+│   ├── config/               # Application-wide configuration 
 │   │   └── config.ts
-│   ├── controllers/                  # API routes/controllers (e.g., warningsController.ts)
+│   ├── controllers/          # API routes/controllers 
 │   │   └── weatherController.ts
 │   ├── services/             # Business logic and external 
 |   |   └── bomService.ts
@@ -361,12 +366,12 @@ jobs:
 |   ├── types
 │   │   └── amocTypes.ts
 │   │   └── amocXmlInterface.ts
-|   ├── utils                # Utility functions (e.g., logger, helpers)
-│   │   └── logger.ts           # Logger implementation
+|   ├── utils                # Utility functions 
+│   │   └── logger.ts           
 │   │   └── xmlParser.ts
 │   │   └── stateMapping.ts
-app.ts                        # Main application entry point
-server.ts                     # Server Initialization 
+|   app.ts                    # Main application entry point
+|   server.ts                 # Server Initialization 
 ├── .env                      # Environment variables (local - ignored by Git)
 ├── .env.example              # Template for environment variables
 ├── .eslintrc.js              # ESLint configuration
@@ -376,6 +381,7 @@ server.ts                     # Server Initialization
 ├── package.json              # Project metadata and scripts
 ├── tsconfig.json             # TypeScript compiler configuration
 └── README.md                 # This file
+
 ```
 
 -------------------- 

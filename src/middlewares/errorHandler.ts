@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
 // This file defines a global error handler for the application.
 export interface AppError extends Error {
@@ -9,9 +9,8 @@ export interface AppError extends Error {
 // This middleware catches errors thrown in the application and sends a JSON response with the error message and status code.
 export const errorHandler = (
   err: AppError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
 ) => {
   console.error(err);
   res.status(err.status || 500).json({

@@ -166,26 +166,6 @@ class LoggerManager {
     addColors(customLevels.colors);
 
     // Register process handlers for graceful shutdown *once* with the singleton
-    this.registerProcessHandlers();
-  }
-
-  /**
-   * Registers process event handlers for graceful shutdown of the logger.
-   * This ensures logs are flushed before the application exits.
-   */
-  private registerProcessHandlers(): void {
-    const shutdown = async (signal: string) => {
-      this._logger.info(`Received ${signal}. Shutting down logger and exiting.`);
-      // Wait for all transports to finish flushing their logs
-      await new Promise<void>(resolve => {
-        // 'finish' event is emitted when all logs have been flushed
-        this._logger.on('finish', resolve);
-        // Ensure transports are informed to end (e.g., file streams)
-        this._logger.end();
-      });
-      process.exit(0);
-    };
-
   }
 
   /**
