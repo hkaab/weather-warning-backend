@@ -1,5 +1,5 @@
 # Flood Warning Backend Service 
-![workflow](https://github.com/hkaab/refactored-code-exam-backend/actions/workflows/ci.yml/badge.svg)
+![workflow](https://github.com/hkaab/refactored-code-exam-backend/actions/workflows/cicd.yml/badge.svg)
 
 📝 **Description**
 
