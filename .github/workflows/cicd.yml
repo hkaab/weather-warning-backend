@@ -8,43 +8,41 @@ on:
 
 jobs:
   build-test-and-deploy:
-    runs-on: ubuntu-latest # Use a fresh Ubuntu runner
+    runs-on: ubuntu-latest 
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4 # Action to checkout your code
+      uses: actions/checkout@v4 
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '24' # Or your desired Node.js version
+        node-version: '24' 
 
     - name: Install dependencies
-      run: npm install # Install your project's npm dependencies
+      run: npm install
 
     - name: Run tests 
-      run: npm test # Assuming you have a test script in package.json
+      run: npm test 
 
     - name: Build
-      run: npm run build  # Assuming you have a test script in package.json
+      run: npm run build 
 
     - name: Generate deployment package
       run: |
         # Create a zip file containing your application code
         # Beanstalk expects a specific structure.
         # Ensure all necessary files (like package.json, Procfile, etc.) are included.
-        zip -r deploy.zip . -x "*.git*" # Exclude .git and node_modules as Beanstalk will install them
+        zip -r deploy.zip . 
 
     - name: Deploy to AWS Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v22 # A popular community action for Beanstalk deployment
+      uses: einaregilsson/beanstalk-deploy@v22 
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ${{ secrets.EB_APPLICATION_NAME }}
         environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
-        version_label: github-action-${{ github.sha }} # Unique version label using commit SHA
+        version_label: github-action-${{ github.sha }} 
         region: ${{ secrets.AWS_REGION }}
-        deployment_package: deploy.zip # The zip file created earlier
-        wait_for_deployment: true # Wait for the deployment to complete
-        # You might also want to add `existing_bucket_name` if you have a specific S3 bucket
-        # for Beanstalk artifacts, otherwise it will create one.
+        deployment_package: deploy.zip 
+        wait_for_deployment: true
