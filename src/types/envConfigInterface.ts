@@ -2,9 +2,14 @@
 export interface EnvConfigInterface {
   port: number;
   nodeEnv: string;
-  bomFtpHost: string;
-  bomFtpDir: string;
-  tempDownloadsDir: string;
+  bomFtp: {
+    Host:string;
+    secure: boolean;
+    Dir: string;
+    maxRetries: number;
+    retryDelay: number; 
+    tempDownloadsDir: string;
+  },
   log: {
     level: string;  
     file: {

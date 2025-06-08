@@ -6,9 +6,14 @@ dotenv.config();
 const config: EnvConfigInterface = {
   port: Number(process.env.PORT) || 8080,
   nodeEnv: process.env.NODE_ENV || 'development',
-  bomFtpHost: process.env.BOM_FTP_HOST || 'ftp.bom.gov.au',
-  bomFtpDir: process.env.BOM_FTP_DIR || '/anon/gen/fwo/',
-  tempDownloadsDir: process.env.TEMP_DOWNLOADS_DIR || './downloads',
+  bomFtp: {
+    Host: process.env.BOM_FTP_HOST || 'ftp.bom.gov.au',
+    secure: process.env.BOM_FTP_SECURE === 'false', // Convert string to boolean
+    Dir: process.env.BOM_FTP_DIR || '/anon/gen/fwo/',
+    maxRetries: Number(process.env.MAX_RETRIES) || 3, // Default to 3 retries if not set
+    retryDelay: Number(process.env.RETRY_DELAY) || 1000, // Default to 1000ms (1 second) if not set
+    tempDownloadsDir: process.env.TEMP_DOWNLOADS_DIR || './downloads', // Default to './downloads' if not set
+  },
   log: {
     level: process.env.LOG_LEVEL || 'info', // Default to 'info' if not set
     file: {

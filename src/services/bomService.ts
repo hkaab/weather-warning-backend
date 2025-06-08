@@ -4,6 +4,8 @@ import path from "path"; // For consistent path manipulation
 import { FtpConfigInterface } from "../types/ftpConfigInterface";
 import config from "../config/config";
 import { getLogger } from "../utils/logger";
+import { readFileAndDelete } from "../utils/fileOperations";
+import { retry } from "../utils/retry";
 
 
 export class BomService {
@@ -14,7 +16,8 @@ export class BomService {
   private ftpConfig: FtpConfigInterface;
   private localDownloadDir: string;
   private bomServiceLogger = getLogger('BomService');
-
+  private readonly MAX_RETRIES: number = config.bomFtp.maxRetries;
+  private readonly RETRY_DELAY_MS: number = config.bomFtp.retryDelay;
   
   /**
    * Creates an instance of BomService.
@@ -24,16 +27,17 @@ export class BomService {
    * @param localDownloadDir The local directory where files will be downloaded (default is from config).
    */
   constructor(
-    host: string = config.bomFtpHost,
-    secure: boolean = false,
-    directory: string = config.bomFtpDir,
-    localDownloadDir: string = config.tempDownloadsDir // A dedicated directory for downloads
+    host: string = config.bomFtp.Host,
+    secure: boolean = config.bomFtp.secure,
+    directory: string = config.bomFtp.Dir,
+
+    localDownloadDir: string = config.bomFtp.tempDownloadsDir // A dedicated directory for downloads
   ) {
-    this.ftpConfig = { host, secure, directory };
-    this.localDownloadDir = localDownloadDir;
-    // Ensure the local download directory exists
-    fs.mkdir(this.localDownloadDir, { recursive: true }).catch(console.error);
-  }
+      this.ftpConfig = { host, secure, directory };
+      this.localDownloadDir = localDownloadDir;
+      // Ensure the local download directory exists
+      fs.mkdir(this.localDownloadDir, { recursive: true }).catch(console.error);
+    }
 
   /**
    * Connects to the FTP server and changes to the specified directory.
@@ -60,19 +64,31 @@ export class BomService {
       client.ftp.verbose = false; // Disable verbose logging in production
     }
 
-    try {
-      await client.access({
-        host: this.ftpConfig.host,
-        secure: this.ftpConfig.secure,
-      });
-      await client.cd(this.ftpConfig.directory);
-      return client;
-    } catch (err) {
-      // Log the error and ensure the client is closed
-      this.bomServiceLogger.error("FTP connection or navigation failed:", err);
-      client.close(); // Ensure client is closed on error
-      throw new Error(`Failed to connect to FTP or navigate to directory: ${err}`);
-    }
+      try {
+            await retry(
+                async () => {
+                    // Close client before re-accessing if it was already connected from a failed attempt
+                    if (!client.ftp.closed) {
+                        client.close();
+                        await new Promise(resolve => setTimeout(resolve, 100)); // Small pause
+                    }
+                    await client.access({
+                        host: this.ftpConfig.host,
+                        secure: this.ftpConfig.secure,
+                    });
+                    await client.cd(this.ftpConfig.directory);
+                    return client; // Return the client on success
+                },
+                this.MAX_RETRIES,
+                this.RETRY_DELAY_MS,
+                `FTP Connect/Navigate to ${this.ftpConfig.host}${this.ftpConfig.directory}`
+            );
+            return client; // Return client if retry was successful
+        } catch (err) {
+            this.bomServiceLogger.error("FTP connection or navigation failed after retries:", err);
+            client.close(); // Ensure client is closed on final failure
+            throw new Error(`Failed to connect to FTP or navigate to directory: ${err}`);
+        }
   }
 
   /**
@@ -95,7 +111,7 @@ export class BomService {
       if (targetFile) {
         // Download the file to the local directory
         await client.downloadTo(localFilePath, targetFile.name);
-        return await fs.readFile(localFilePath, { encoding: "utf-8" });
+        return await readFileAndDelete(localFilePath);
       } else {
         this.bomServiceLogger.warn(`XML file '${remoteFileName}' not found on FTP server.`);
         return "";
@@ -125,7 +141,8 @@ export class BomService {
       // basic-ftp's download method will create the file if it doesn't exist
       await client.downloadTo(localFilePath, remoteFileName);
 
-      return await fs.readFile(localFilePath, { encoding: "utf-8" });
+      return await readFileAndDelete(localFilePath);
+
     } catch (err: any) { // Use 'any' for err if type is not strictly known, or check instanceof
       if (err.code === 550) { // FTP error code for "File not found"
         this.bomServiceLogger.warn(`Text file '${key}.txt' not found on FTP server.`);

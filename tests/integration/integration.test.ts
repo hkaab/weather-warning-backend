@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = process.env.FLOOD_WARNING_API || 'http://localhost:8080';
 
 describe('Flood Warning API Integration Tests', () => {
 
