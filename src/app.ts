@@ -15,6 +15,13 @@ const app = express();
 // Middleware to log requests
 app.use(express.json());
 
+app.use((_, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
 // Routes
 app.use('/', routes);
 
