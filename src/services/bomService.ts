@@ -1,6 +1,6 @@
 import { Client, FileInfo } from "basic-ftp";
-import * as fs from "fs/promises"; // Use fs/promises for async file operations
-import path from "path"; // For consistent path manipulation
+import { promises as fs } from 'fs';
+import path from "path"; 
 import { FtpConfigInterface } from "../types/ftpConfigInterface";
 import config from "../config/config";
 import { getLogger } from "../utils/logger";
@@ -30,13 +30,14 @@ export class BomService {
     host: string = config.bomFtp.Host,
     secure: boolean = config.bomFtp.secure,
     directory: string = config.bomFtp.Dir,
-
     localDownloadDir: string = config.bomFtp.tempDownloadsDir // A dedicated directory for downloads
   ) {
       this.ftpConfig = { host, secure, directory };
       this.localDownloadDir = localDownloadDir;
       // Ensure the local download directory exists
-      fs.mkdir(this.localDownloadDir, { recursive: true }).catch(console.error);
+      fs.mkdir(this.localDownloadDir, { recursive: true }).catch((err) => {
+        this.bomServiceLogger.error(`Failed to create local download directory '${this.localDownloadDir}':`, err);
+      });
     }
 
   /**
@@ -170,8 +171,6 @@ export class BomService {
     if (!client) {
       throw new Error("Failed to connect to FTP server.");
     }
-
-    client.ftp.verbose = true;
 
     const files: FileInfo[] = await client.list();
 

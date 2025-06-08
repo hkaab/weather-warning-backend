@@ -9,17 +9,11 @@ jest.mock('fs', () => {
         promises: {
             readFile: jest.fn(),
             unlink: jest.fn(),
-            // Add any other fs.promises methods your code might use that you need to mock
-            // e.g., access: jest.fn(), writeFile: jest.fn(), mkdir: jest.fn(),
         },
-        // If your source code uses any non-promises methods directly from 'fs' (e.g., fs.existsSync),
-        // you would mock them here too.
-        // existsSync: jest.fn(),
-        // readFileSync: jest.fn(),
     };
 });
 
-// Mock the logger utility (assuming path is correct)
+// Mock the logger utility
 jest.mock('../../src/utils/logger', () => ({
     getLogger: jest.fn(() => ({
         info: jest.fn(),
@@ -34,13 +28,13 @@ import { readFileAndDelete } from '../../src/utils/fileOperations';
 // IMPORTANT: Now, when you import from 'fs', you're getting the mocked version.
 // You still need to access the 'promises' property on it.
 import * as fs from 'fs'; // Use * as to ensure we get the entire mocked module structure
-import { getLogger } from '../../src/utils/logger';
-
 // --- Directly cast the functions from the imported 'fs.promises' object ---
 // This is the cleanest way to get the mock functions with correct typing.
 const mockReadFile = (fs.promises.readFile as jest.Mock);
 const mockUnlink = (fs.promises.unlink as jest.Mock);
 
+// Import the logger utility to verify logging behavior
+import { getLogger } from '../../src/utils/logger';
 // Get the mocked logger instance
 const mockLogger = (getLogger as jest.Mock).mock.results[0].value;
 

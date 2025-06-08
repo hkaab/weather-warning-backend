@@ -13,6 +13,7 @@ const config: EnvConfigInterface = {
     maxRetries: Number(process.env.MAX_RETRIES) || 3, // Default to 3 retries if not set
     retryDelay: Number(process.env.RETRY_DELAY) || 1000, // Default to 1000ms (1 second) if not set
     tempDownloadsDir: process.env.TEMP_DOWNLOADS_DIR || './downloads', // Default to './downloads' if not set
+    verbose: process.env.BOM_FTP_VERBOSE === 'false', // Convert string to boolean
   },
   log: {
     level: process.env.LOG_LEVEL || 'info', // Default to 'info' if not set

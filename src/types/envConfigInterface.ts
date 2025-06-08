@@ -9,6 +9,7 @@ export interface EnvConfigInterface {
     maxRetries: number;
     retryDelay: number; 
     tempDownloadsDir: string;
+    verbose: boolean; // Added for FTP client verbosity
   },
   log: {
     level: string;  
