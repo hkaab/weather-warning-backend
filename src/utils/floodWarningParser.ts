@@ -87,13 +87,13 @@ export class FloodWarningParser {
    * @param defaultValue The default value to return if the path is not found or empty.
    * @returns The extracted string value or the default value.
    */
-  private getXmlValue(obj: any, path: string[], defaultValue: string = ''): string {
-    let current: any = obj;
+  private getXmlValue(obj: unknown, path: string[], defaultValue: string = ''): string {
+    let current: unknown = obj;
     for (const key of path) {
-      if (current === null || typeof current !== 'object' || !current.hasOwnProperty(key)) {
+      if (current === null || typeof current !== 'object' || !Object.prototype.hasOwnProperty.call(current, key)) {
         return defaultValue;
       }
-      current = current[key];
+      current = (current as Record<string, unknown>)[key];
     }
     // Assume it's an array and take the first element, or return default
     if (Array.isArray(current) && current.length > 0) {

@@ -15,6 +15,10 @@ const config: EnvConfigInterface = {
     tempDownloadsDir: process.env.TEMP_DOWNLOADS_DIR || './downloads', // Default to './downloads' if not set
     verbose: process.env.BOM_FTP_VERBOSE === 'false', // Convert string to boolean
   },
+  cache: {
+    ttlSeconds: Number(process.env.CACHE_TTL_SECONDS) || 300, // Default to 300 seconds (5 minutes) if not set
+    checkPeriodSeconds: Number(process.env.CACHE_CHECK_PERIOD_SECONDS) || 60, // Default to 60 seconds if not set
+  },  
   log: {
     level: process.env.LOG_LEVEL || 'info', // Default to 'info' if not set
     file: {

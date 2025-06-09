@@ -11,6 +11,10 @@ export interface EnvConfigInterface {
     tempDownloadsDir: string;
     verbose: boolean; // Added for FTP client verbosity
   },
+  cache: {
+    ttlSeconds: number;
+    checkPeriodSeconds: number;
+  },
   log: {
     level: string;  
     file: {
