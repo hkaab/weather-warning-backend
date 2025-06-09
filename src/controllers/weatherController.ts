@@ -107,9 +107,15 @@ export const getWarningById = async (req: Request, res: Response, next: NextFunc
 
     // Get the warning information, including the text content
     // This will return an object containing details like title, description, and severity
-    const warningText = await bomService.downloadText(warningId)
+    let warningText = await bomService.downloadText(warningId)
     if (!warningText) {
-      res.status(404).send({ error: 'Warning text not found' });
+      warningText = "Warning text not found";
+      const responseData = {text: warningText };
+      // Log the warning text for debugging purposes
+      weatherControllerLogger.warn("Warning text not found for ID:", warningId);
+      // If the text is not found, store a default message in the cache
+      appCache.set(cacheKey, responseData, WARNING_DETAIL_CACHE_TTL);
+      res.status(404).send({error: warningText});
       return;
     }
     
