@@ -12,7 +12,7 @@ module.exports = {
   // And your package.json has "type": "module"
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json'
     },
   },
 };

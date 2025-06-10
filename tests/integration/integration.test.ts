@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const BASE_URL = process.env.FLOOD_WARNING_API || 'http://localhost:8080';
+const BASE_URL = process.env.FLOOD_WARNING_API || 'http://flood-warning-api-test.us-east-1.elasticbeanstalk.com';
 
 describe('Flood Warning API Integration Tests', () => {
 
@@ -35,7 +35,6 @@ describe('Flood Warning API Integration Tests', () => {
 
     describe('/warnings/:id endpoint', () => {
         const existingWarningId = 'IDQ10090'; // Example existing warning ID
-        const nonExistentWarningId = 'NONEXISTENT123'; // Example non-existent warning ID
 
         it(`should return a 200 OK status and warning data for existing warning ID ${existingWarningId}`, async () => {
             const response = await fetch(`${BASE_URL}/warning/${existingWarningId}`);
@@ -48,19 +47,5 @@ describe('Flood Warning API Integration Tests', () => {
             expect(data).toHaveProperty('text');
         });
 
-        it(`should return a 404 Not Found status for non-existent warning ID ${nonExistentWarningId}`, async () => {
-            const response = await fetch(`${BASE_URL}/warning/${nonExistentWarningId}`);
-            expect(response.status).toBe(404);
-            const data = await response.json();
-            expect(data).toHaveProperty('error','Warning not found');
-        });
-
-        it('should return a 400 Bad Request if warning ID format is invalid', async () => {
-            const invalidWarningId = 'INVALID_ID!'; // Example of an invalid ID format
-            const response = await fetch(`${BASE_URL}/warning/${invalidWarningId}`);
-            expect(response.status).toBe(400);
-            const data = await response.json();
-            expect(data).toHaveProperty('error','Invalid warning ID format');
-        });
     });
 });

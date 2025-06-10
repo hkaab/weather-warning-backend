@@ -237,8 +237,8 @@ export class WarningsService {
 
     // Download the XML content of the flood warning using the Warning Service
     // If the warning is not found, return a 404 error
-    const warning =  await this.downloadXml(warningId);
-    if (!warning) {
+    const warningXml =  await this.downloadXml(warningId);
+    if (!warningXml) {
       this.warningsServiceLogger.error(`Warning with ID ${warningId} not found.`);
       return null;
     }
@@ -249,7 +249,7 @@ export class WarningsService {
   
     // Parse the downloaded XML content to extract structured warning information
     // using the FloodWarningParser
-    const floodWarningParser= new FloodWarningParser(warning);
+    const floodWarningParser= new FloodWarningParser(warningXml);
     // Get the structured warning information from the parser
     const warningInfo = await floodWarningParser.getWarningInfo();
 
