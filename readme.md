@@ -360,7 +360,7 @@ jobs:
 │   ├── controllers/          # API routes/controllers 
 │   │   └── weatherController.ts
 │   ├── services/             # Business logic and external 
-|   |   └── bomService.ts
+|   |   └── warningsService.ts
 |   ├── parsers (e.g., ftpService.ts)
 │   │   └── floodWarningParser.ts
 |   ├── types

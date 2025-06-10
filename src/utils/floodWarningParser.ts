@@ -2,8 +2,6 @@ import { parseXmlAsync } from './xmlParser';
 import { AmocProductTypeChar, AmocServiceTypeChar } from '../types/amocTypes';
 import { AmocXmlInterface } from '../types/amocXmlInterface';
 import { FloodWarningInfoInterface } from '../types/floodWarningInfoInterface';
-import { BomService } from '../services/bomService';
-import { getLogger } from "./logger";
 
 /**
  * Maps single-character product codes to their full descriptions.
@@ -52,15 +50,12 @@ export class FloodWarningParser {
   // Store the parsed XML object once to avoid repeated parsing
   private parsedXml: AmocXmlInterface | null = null;
   private xmlString: string; // Keep the original string if needed for re-parsing or debugging
-  private floodWarningParserLogger = getLogger('FloodWarningParser');
-  private bomService: BomService; // Reference to the BOM service for downloading text
   /**
    * Initializes the parser with the XML string.
    * @param xmlString The raw XML string content of the flood warning.
    */
-  constructor(bomService:BomService,xmlString: string) {
+  constructor(xmlString: string) {
     this.xmlString = xmlString;
-    this.bomService = bomService;
   }
 
   /**
@@ -128,31 +123,4 @@ export class FloodWarningParser {
     };
   }
 
-  /**
-   * Retrieves the identifier from the XML.
-   * @returns The identifier string.
-   * @throws If the XML cannot be parsed or the identifier is missing.
-   */
-  public async getIdentifier(): Promise<string> {
-    const obj = await this.getParsedXml();
-    return this.getXmlValue(obj, ['amoc', 'identifier']);
-  }
-
-  /**
-   * Downloads and returns the associated warning text using the Downloader.
-   * @returns The warning text as a string.
-   * @throws If the identifier cannot be retrieved or downloading fails.
-   */
-  public async getWarningText(): Promise<string> {
-    const identifier = await this.getIdentifier(); // Get identifier via dedicated method
-    if (!identifier) {
-      this.floodWarningParserLogger.warn('Warning text download skipped: AMOC identifier not found in XML.');
-      return ''; // Return empty string if no identifier
-    }
-    
-    this.floodWarningParserLogger.info(`Downloading warning text for identifier: ${identifier}`);
-    const warningText = await this.bomService.downloadText(identifier);
-
-    return warningText;
-  }
 }
