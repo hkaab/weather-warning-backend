@@ -9,9 +9,8 @@ const cacheLogger = getLogger('AppCache'); // Initialize logger for the cache se
 
 // Define default TTLs (Time To Live) in seconds,
 // which can be overridden by environment variables or configuration.
-const DEFAULT_TTL_SECONDS = 300; // 5 minutes
-const DEFAULT_CHECK_PERIOD_SECONDS = 60; // Check for expired keys every 60 seconds
-
+const DEFAULT_TTL_SECONDS = 86400;
+const DEFAULT_CHECK_PERIOD_SECONDS = 18000; 
 // Initialize NodeCache.
 // stdTTL: default time to live for all keys in seconds.
 // checkperiod: interval to check for expired keys.

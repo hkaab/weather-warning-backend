@@ -1,13 +1,5 @@
-/**
- * Defines the allowed Australian State/Territory abbreviations.
- * This is a 'string literal union type', which provides strong type checking.
- */
-export type AustralianState = "NT" | "NSW" | "QLD" | "SA" | "TAS" | "VIC" | "WA" | "ACT";
-
-/**
- * Defines the AMOC ID prefixes for Australian states/territories.
- */
-export type AmocIdPrefix = "IDD" | "IDN" | "IDQ" | "IDS" | "IDT" | "IDV" | "IDW" | "UNK"; // Added UNK for unknown
+import { AmocIdPrefix } from "../types/amocTypes";
+import { AustralianState } from "../types/australianStates";
 
 /**
  * A mapping from Australian State/Territory abbreviations to their
