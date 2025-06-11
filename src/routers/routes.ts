@@ -4,13 +4,13 @@
 // File: src/routers/routes.ts  
 
 import { Router } from 'express';
-import { getWarnings, getWarningById } from '../controllers/weatherController';   
+import { getStateWarnings, getWarningDetailsById } from '../controllers/weatherController';   
 
 const router = Router();
 
 // Define routes
-router.get('/', getWarnings);
-router.get('/warning/:id', getWarningById);
+router.get('/', getStateWarnings);
+router.get('/warning/:id', getWarningDetailsById);
 
 // Health check route
 router.get('/health', (_, res) => {

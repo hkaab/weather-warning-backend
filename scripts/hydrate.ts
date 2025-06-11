@@ -1,3 +1,5 @@
+// Hydrate Server cache for better performance
+
 import fetch from 'node-fetch'; // Assuming 'node-fetch' is installed (npm install node-fetch@2) for older Node.js versions. For Node.js 18+, 'fetch' is native.
 
 const BASE_URL = process.env.FLOOD_WARNING_API || 'http://flood-warning-api-test.us-east-1.elasticbeanstalk.com';

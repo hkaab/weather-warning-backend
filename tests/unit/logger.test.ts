@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { getLogger, AppLogger } from '../../src/utils/logger'; // Adjust path as necessary
 // Import createLogger as a jest.Mock type for proper typing of .mock property
 import type { LoggerOptions, Logger as WinstonLoggerType } from 'winston';
@@ -143,9 +146,6 @@ describe('Singleton Winston Logger', () => {
   // Before each test, reset mocks and re-import getLogger
   // This ensures a fresh singleton state for each test
   let logger: AppLogger;
-  let WinstonLoggerInstance: any; // To access the mock Winston logger's internal state
-  let MockConsoleTransport: jest.Mock;
-  let MockDailyRotateFile: jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks(); // Clear calls on all mocks
@@ -172,6 +172,7 @@ describe('Singleton Winston Logger', () => {
 
   it('should return the same logger instance (singleton pattern)', () => {
     // Directly access the internal LoggerManager to test getInstance
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const LoggerManagerModule = require('../../src/utils/logger'); // Re-import to ensure fresh module state for this specific test
     const instance1 = LoggerManagerModule.getLogger();
     const instance2 = LoggerManagerModule.getLogger();

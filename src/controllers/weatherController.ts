@@ -9,7 +9,7 @@ const weatherControllerLogger = getLogger('WeatherController');
  * Controller for handling flood-related requests.
  * This controller interacts with the warningsService to fetch flood warnings.
  */
-export const getWarnings = async (req: Request, res: Response, next: NextFunction) => {
+export const getStateWarnings = async (req: Request, res: Response, next: NextFunction) => {
   try {
         // Validate the state query parameter
         if (!req.query.state) {
@@ -36,7 +36,7 @@ export const getWarnings = async (req: Request, res: Response, next: NextFunctio
 };
 
 
-export const getWarningById = async (req: Request, res: Response, next: NextFunction) => {
+export const getWarningDetailsById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     
     // Extract the warning ID from the request parameters
