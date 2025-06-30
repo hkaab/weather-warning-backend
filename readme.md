@@ -449,9 +449,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Hossein Kaabi - hkaabi@myyahoo.com
 
-Project Link: `https://github.com/hkaab/refactored-code-exam-backend`
+Project Link: `https://github.com/hkaab/weather-warning-backend`
 
-Test Url : `http://flood-warning-api-test.us-east-1.elasticbeanstalk.com/`
+Test Url : `http://weather-warning-test.ap-southeast-2.elasticbeanstalk.com/`
 
 
 ## References
