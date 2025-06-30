@@ -2,7 +2,7 @@
 
 import fetch from 'node-fetch'; // Assuming 'node-fetch' is installed (npm install node-fetch@2) for older Node.js versions. For Node.js 18+, 'fetch' is native.
 
-const BASE_URL = process.env.FLOOD_WARNING_API || 'http://flood-warning-api-test.us-east-1.elasticbeanstalk.com';
+const BASE_URL = process.env.FLOOD_WARNING_API || 'http://weather-warning-test.ap-southeast-2.elasticbeanstalk.com';
 const INTERVAL_MS = 10 * 60 * 1000; // 10 minutes in milliseconds
 const DETAIL_CALL_DELAY_MS = 200;
 
