@@ -1,4 +1,4 @@
-name: Flood Warning API to AWS Elastic Beanstalk
+name: Weather Warning API to AWS Elastic Beanstalk
 
 on:
   push:
