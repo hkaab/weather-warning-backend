@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const BASE_URL = process.env.FLOOD_WARNING_API || 'http://flood-warning-api-test.us-east-1.elasticbeanstalk.com';
+const BASE_URL = process.env.FLOOD_WARNING_API || 'http://weather-warning-test.ap-southeast-2.elasticbeanstalk.com';
 
 describe('Flood Warning API Integration Tests', () => {
 
